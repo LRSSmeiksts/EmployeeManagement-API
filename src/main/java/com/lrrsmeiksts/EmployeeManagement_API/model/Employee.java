@@ -13,7 +13,7 @@ import java.time.LocalDate;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EmployeeModel {
+public class Employee {
 
     @NotNull
     @Min(value = 1, message = "ID must be bigger than 0")
