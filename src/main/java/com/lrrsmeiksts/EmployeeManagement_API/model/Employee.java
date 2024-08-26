@@ -15,7 +15,6 @@ import java.time.LocalDate;
 @NoArgsConstructor
 public class Employee {
 
-    @NotNull
     @Min(value = 1, message = "ID must be bigger than 0")
     @Max(value = Long.MAX_VALUE, message = " ID must be smaller than 9223372036854775807")
     private Long id;
@@ -27,7 +26,7 @@ public class Employee {
     private String department;
 
     @NotNull
-    @DateTimeFormat(pattern = " yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate date;
 
 }
