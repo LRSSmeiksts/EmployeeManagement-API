@@ -1,22 +1,34 @@
 package com.lrrsmeiksts.EmployeeManagement_API.business.mappers;
-
 import com.lrrsmeiksts.EmployeeManagement_API.business.repository.model.EmployeeDAO;
 import com.lrrsmeiksts.EmployeeManagement_API.model.Employee;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.springframework.stereotype.Component;
 
-@Mapper(componentModel = "spring")
-public interface EmployeeMapper {
+@Component
+public class EmployeeMapper {
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "department", source = "department")
-    @Mapping(target = "date", source = "date")
-    EmployeeDAO employeeToEmployeeDAO(Employee employee);
+    public EmployeeDAO employeeToEmployeeDAO(Employee employee){
+        if(employee == null){
+            return null;
+        }
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        employeeDAO.setId(employee.getId());
+        employeeDAO.setName(employee.getName());
+        employeeDAO.setDepartment(employee.getDepartment());
+        employeeDAO.setDate(employee.getDate());
 
-    @Mapping(target = "id", source = "id")
-    @Mapping(target = "name", source = "name")
-    @Mapping(target = "department", source = "department")
-    @Mapping(target = "date", source = "date")
-    Employee employeeDAOToEmployee(EmployeeDAO employeeDAO);
+        return employeeDAO;
+    }
+
+    public Employee employeeDAOToEmployee(EmployeeDAO employeeDAO){
+        if(employeeDAO == null){
+            return null;
+        }
+        Employee employee = new Employee();
+        employee.setId(employeeDAO.getId());
+        employee.setName(employeeDAO.getName());
+        employee.setDepartment(employeeDAO.getDepartment());
+        employee.setDate(employeeDAO.getDate());
+
+        return employee;
+    }
 }
