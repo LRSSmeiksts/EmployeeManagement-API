@@ -44,6 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         try{
             EmployeeDAO employeeDAO = employeeMapper.employeeToEmployeeDAO(employee);
             EmployeeDAO savedEmployeeDAO = employeeRepository.save(employeeDAO);
+            log.info("Employee has been saved: {}",savedEmployeeDAO);
             return employeeMapper.employeeDAOToEmployee(savedEmployeeDAO);
         }catch (DataAccessException e){
             throw new GeneralDatabaseException("Failed to save employee due to a database error ",e);
@@ -70,8 +71,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> getEmployeesByDepartmentAndDate(String department, int year){
-        return  employeeRepository.findByDepartmentAndDateAfter(department,LocalDate.of(year,1,1) )
+        List<Employee> employeeList = employeeRepository.findByDepartmentAndDateAfter(department,LocalDate.of(year,1,1) )
                 .stream().map(employeeMapper::employeeDAOToEmployee).toList();
+        log.info("Employees found by the criteria. List size: {}",employeeList.size());
+        return  employeeList;
 
     }
 
