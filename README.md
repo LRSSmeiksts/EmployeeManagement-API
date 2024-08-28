@@ -59,7 +59,6 @@ POST: http://localhost:9090/employees <br>
 Example JSON body:
 ```
 {
-"id": 2,
 "name": "John",
 "department": "IT",
 "date": "2024-11-21"
